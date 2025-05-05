@@ -175,16 +175,27 @@ function App() {
           <label className="block mb-1">Numero domande:</label>
           <input type="number" value={numero} onChange={e => setNumero(Number(e.target.value))} min="1" max="100" className="w-full border p-2 rounded" />
         </div>
-        <div className="flex justify-center">
-          <button
-            onClick={generaQuiz}
-            className="bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition"
-          >
-            Genera
-          </button>
-        </div>
+        {!mostraCorrette && (
+          <div className="flex justify-center">
+            <button
+              onClick={generaQuiz}
+              className="bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition"
+            >
+              Genera
+            </button>
+          </div>
+        )}
         {domande.length > 0 && (
           <div className="mt-6 space-y-4">
+            {mostraCorrette && (
+              <div className="mt-4 text-lg font-semibold text-center text-[#6A82AB]">
+                Risposte corrette:{" "}
+                {
+                  domande.filter((q: any, i: number) => risposteUtente[i] === q.corretta).length
+                }{" "}
+                su {domande.length}
+              </div>
+            )}
             {mostraTutteLeDomande
               ? domande.map((domanda, index) => (
                 <div key={index} className="bg-white border border-[#e9d6dc] p-4 rounded-xl shadow-sm">
@@ -192,11 +203,10 @@ function App() {
                     {index + 1}: {domanda.domanda}
                   </p>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {Object.entries(domanda.opzioni).map(([lettera, testo]) => {
-                      const isSelezionata = risposteUtente[indiceCorrente] === lettera;
-                      const èCorretta = domande[indiceCorrente].corretta === lettera;
+                    {Object.entries(domande[index].opzioni).map(([lettera, testo]) => {
+                      const isSelezionata = risposteUtente[index] === lettera;
+                      const èCorretta = domande[index].corretta === lettera;
                       let colore = "border-[#ddd] bg-white hover:bg-[#f8f8f8]";
-                      {console.log(lettera, testo)}
                       if (mostraCorrette) {
                         if (èCorretta) colore = "border-green-500 bg-green-100";
                         else if (isSelezionata && !èCorretta) colore = "border-red-500 bg-red-100";
@@ -207,7 +217,7 @@ function App() {
                       return (
                         <button
                           key={lettera}
-                          onClick={() => selezionaRisposta(indiceCorrente, lettera)}
+                          disabled
                           className={`border ${colore} rounded p-2 text-left`}
                         >
                           <strong>{lettera}</strong>: {testo}
@@ -274,27 +284,20 @@ function App() {
                   </div>
                 </div>
               )}
-            <div className="flex justify-center mt-6">
-              <button
-                onClick={() => handleVerificaRisposte(true)}
-                disabled={isTimeUp || Object.keys(risposteUtente).length !== domande.length || mostraCorrette}
-                className={`bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition ${Object.keys(risposteUtente).length === domande.length && !mostraCorrette
-                  ? "bg-green-600 hover:bg-green-700"
-                  : "bg-gray-400 cursor-not-allowed"
-                  }`}
-              >
-                Verifica Risposte
-              </button>
-            </div>
-          </div>
-        )}
-        {mostraCorrette && (
-          <div className="mt-4 text-lg font-semibold text-center">
-            Risposte corrette:{" "}
-            {
-              domande.filter((q: any, i: number) => risposteUtente[i] === q.corretta).length
-            }{" "}
-            su {domande.length}
+            {!mostraCorrette && (
+              <div className="flex justify-center mt-6">
+                <button
+                  onClick={() => handleVerificaRisposte(true)}
+                  disabled={isTimeUp || Object.keys(risposteUtente).length !== domande.length || mostraCorrette}
+                  className={`bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition ${Object.keys(risposteUtente).length === domande.length && !mostraCorrette
+                    ? "bg-green-600 hover:bg-green-700"
+                    : "bg-gray-400 cursor-not-allowed"
+                    }`}
+                >
+                  Verifica Risposte
+                </button>
+              </div>
+            )}
           </div>
         )}
         {mostraCorrette && (
