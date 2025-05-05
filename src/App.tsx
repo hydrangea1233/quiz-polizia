@@ -158,7 +158,7 @@ function App() {
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold mb-6 text-[#6A82AB]">Un quiz qualsiasi</h1>
         <div className="mb-4">
-          <label className="block mb-1">Categoria:</label>
+          <label className="block mb-1 text-[#6A82AB]">Categoria:</label>
           <select
             value={categoria}
             onChange={e => setCategoria(e.target.value)}
@@ -172,7 +172,7 @@ function App() {
           </select>
         </div>
         <div className="mb-4">
-          <label className="block mb-1">Numero domande:</label>
+          <label className="block mb-1 text-[#6A82AB]">Numero domande:</label>
           <input type="number" value={numero} onChange={e => setNumero(Number(e.target.value))} min="1" max="100" className="w-full border p-2 rounded" />
         </div>
         {!mostraCorrette && (
@@ -188,7 +188,7 @@ function App() {
         {domande.length > 0 && (
           <div className="mt-6 space-y-4">
             {mostraCorrette && (
-              <div className="mt-4 text-lg font-semibold text-center text-[#6A82AB]">
+              <div className="mt-4 text-lg font-semibold text-[#6A82AB]">
                 Risposte corrette:{" "}
                 {
                   domande.filter((q: any, i: number) => risposteUtente[i] === q.corretta).length
@@ -198,7 +198,7 @@ function App() {
             )}
             {mostraTutteLeDomande
               ? domande.map((domanda, index) => (
-                <div key={index} className="bg-white border border-[#e9d6dc] p-4 rounded-xl shadow-sm">
+                <div key={index} className="bg-white border border-[#6fa2f7] p-4 rounded-xl shadow-sm">
                   <p className="font-semibold mb-2">
                     {index + 1}: {domanda.domanda}
                   </p>
@@ -228,7 +228,7 @@ function App() {
                 </div>
               ))
               : (
-                <div key={indiceCorrente} className="bg-white border border-[#e9d6dc] p-4 rounded-xl shadow-sm">
+                <div key={indiceCorrente} className="bg-white border border-[#6fa2f7] p-4 rounded-xl shadow-sm">
                   <p
                     className={`text-center text-lg font-semibold mb-2 transition-colors ${remainingTime > maxTime * 0.5
                       ? 'text-green-600'
