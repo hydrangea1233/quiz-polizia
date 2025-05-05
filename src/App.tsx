@@ -192,11 +192,11 @@ function App() {
                     {index + 1}: {domanda.domanda}
                   </p>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {Object.entries(domande[indiceCorrente].opzioni).map(([lettera, testo]) => {
+                  {Object.entries(domanda.opzioni).map(([lettera, testo]) => {
                       const isSelezionata = risposteUtente[indiceCorrente] === lettera;
                       const èCorretta = domande[indiceCorrente].corretta === lettera;
                       let colore = "border-[#ddd] bg-white hover:bg-[#f8f8f8]";
-
+                      {console.log(lettera, testo)}
                       if (mostraCorrette) {
                         if (èCorretta) colore = "border-green-500 bg-green-100";
                         else if (isSelezionata && !èCorretta) colore = "border-red-500 bg-red-100";
