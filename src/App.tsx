@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import questions from './data/domande.json';
 
 function App() {
-  const [categoria, setCategoria] = useState('');
+  const [categoria, setCategoria] = useState("__tutte__");
   const [numero, setNumero] = useState(5);
   const [domande, setEstratte] = useState([]);
   const [risposteUtente, setRisposteUtente] = useState<{ [index: number]: string }>({});
@@ -31,6 +31,17 @@ function App() {
     resetCountdown();
     setMostraTutteLeDomande(false);
   };
+
+  const handleNumeroDomande = (value) => {
+    setNumero(Number(value));
+    if (Number(value) === 0) {
+      setNumero("");
+    } else if (Number(value) > 100) {
+      alert("Ops!\nSi possono selezionare al massimo 100 domande!");
+      setNumero("");
+      return;
+    }
+  }
 
   const generaQuiz = () => {
     setMostraTutteLeDomande(false);
@@ -164,7 +175,6 @@ function App() {
             onChange={e => setCategoria(e.target.value)}
             className="w-full border p-2 rounded"
           >
-            <option value="">-- Seleziona --</option>
             <option value="__tutte__">Tutte le categorie</option>
             {categorie.map(cat => (
               <option key={cat} value={cat}>{cat}</option>
@@ -173,7 +183,7 @@ function App() {
         </div>
         <div className="mb-4">
           <label className="block mb-1 text-[#6A82AB]">Numero domande:</label>
-          <input type="number" value={numero} onChange={e => setNumero(Number(e.target.value))} min="1" max="100" className="w-full border p-2 rounded" />
+          <input type="number" value={numero} onChange={e => handleNumeroDomande(e.target.value)} min="1" max="100" className="w-full border p-2 rounded" />
         </div>
         {!mostraCorrette && (
           <div className="flex justify-center">
@@ -218,7 +228,7 @@ function App() {
                         <button
                           key={lettera}
                           disabled
-                          className={`border ${colore} rounded p-2 text-left`}
+                          className={`border ${colore} rounded p-2 text-left wrap-break-word`}
                         >
                           <strong>{lettera}</strong>: {testo}
                         </button>
@@ -230,7 +240,7 @@ function App() {
               : (
                 <div key={indiceCorrente} className="bg-white border border-[#6fa2f7] p-4 rounded-xl shadow-sm">
                   <p
-                    className={`text-center text-lg font-semibold mb-2 transition-colors ${remainingTime > maxTime * 0.5
+                    className={`text-center text-lg font-semibold transition-colors ${remainingTime > maxTime * 0.5
                       ? 'text-green-600'
                       : remainingTime > maxTime * 0.2
                         ? 'text-yellow-500'
@@ -238,8 +248,8 @@ function App() {
                       }`}
                   >
                     {formatTime(remainingTime)}
-                    {isTimeUp && <p className="text-red-600 text-center">Tempo scaduto!</p>}
                   </p>
+                  {isTimeUp && <p className="text-red-600 text-center text-lg font-semibold mb-2">Tempo scaduto!</p>}
                   <p className="text-sm text-gray-500 mb-1">Categoria: {domande[indiceCorrente].categoria}</p>
                   <p className="font-semibold mb-2">
                     {indiceCorrente + 1}. {domande[indiceCorrente].domanda}
@@ -261,7 +271,7 @@ function App() {
                         <button
                           key={lettera}
                           onClick={() => selezionaRisposta(indiceCorrente, lettera)}
-                          className={`border ${colore} rounded p-2 text-left`}
+                          className={`border ${colore} rounded p-2 text-left wrap-break-word`}
                         >
                           <strong>{lettera}</strong>: {testo}
                         </button>
