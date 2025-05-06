@@ -41,6 +41,10 @@ function App() {
       alert("Ops!\nSi possono selezionare al massimo 100 domande!");
       setNumero("");
       return;
+    } else if (Number(value) < 1) {
+      alert("Ops!\nSi deve selezionare almeno 1 domanda!");
+      setNumero("");
+      return;
     }
   }
 
