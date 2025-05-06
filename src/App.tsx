@@ -310,13 +310,13 @@ function App() {
                   disabled={indiceCorrente === 0}
                   className={`px-4 py-2 rounded transition ${indiceCorrente === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#6A82AB] hover:bg-[#81A8CC] text-white'
                     }`}
-                >← Precedente</button>
+                >Precedente</button>
                 <button
                   onClick={() => setIndiceCorrente(i => Math.min(i + 1, domande.length - 1))}
                   disabled={indiceCorrente === domande.length - 1}
                   className={`px-4 py-2 rounded transition ${indiceCorrente === domande.length - 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#6A82AB] hover:bg-[#81A8CC] text-white'
                     }`}
-                >Successiva →</button>
+                >Successiva</button>
               </div>
             </div>
             {!mostraCorrette && (
