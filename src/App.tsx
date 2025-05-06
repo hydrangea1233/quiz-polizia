@@ -25,7 +25,7 @@ function App() {
     setEstratte([]);
     setRisposteUtente({});
     setMostraCorrette(false);
-    setCategoria('');
+    setCategoria('__tutte__');
     setNumero(5);
     setIndiceCorrente(0);
     stopTimer();
