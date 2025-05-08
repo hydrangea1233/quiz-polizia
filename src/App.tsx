@@ -16,8 +16,7 @@ function App() {
   const countdownRef = useRef(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
   const [hasOverflow, setHasOverflow] = useState(false);
-
-
+  const numeroRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const categorie = Object.keys(questions);
 
@@ -137,6 +136,16 @@ function App() {
     window.addEventListener("resize", checkOverflow);
     return () => window.removeEventListener("resize", checkOverflow);
   }, [domande.length]);
+
+  useEffect(() => {
+    const currentBtn = numeroRefs.current[indiceCorrente];
+    currentBtn?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }, [indiceCorrente]);
+  
   
 
   const startTimer = () => {
@@ -204,7 +213,7 @@ function App() {
           <label className="block mb-1 text-[#6A82AB]">Numero domande:</label>
           <input type="number" value={numero} onChange={e => handleNumeroDomande(e.target.value)} min="1" max="100" className="w-full border p-2 rounded" />
         </div>
-        {!mostraCorrette && (
+        {domande.length === 0 && !mostraCorrette && (
           <div className="flex justify-center">
             <button
               onClick={generaQuiz}
@@ -214,13 +223,21 @@ function App() {
             </button>
           </div>
         )}
+        {domande.length > 0 && !mostraCorrette && (
+          <div className="mt-4 text-center">
+            <button
+              onClick={resetQuiz}
+              className="bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition"
+            >Ricomincia</button>
+          </div>
+        )}
         {domande.length > 0 && (
           <div className="mt-6 space-y-4">
             <div className="relative flex items-center justify-center">
               {hasOverflow && (
                 <button
                   onClick={() => scrollBarRef.current?.scrollBy({ left: -100, behavior: "smooth" })}
-                  className="absolute left-0 z-10 bg-white/80 rounded-full p-1 shadow-md"
+                  className="absolute left-0 z-10 bg-[#B9CAE5] rounded p-1"
                 >
                   ←
                 </button>
@@ -230,7 +247,7 @@ function App() {
                   const rispostaUtente = risposteUtente[index];
                   const rispostaCorretta = domande[index].corretta;
                   const haRisposto = rispostaUtente !== undefined;
-                  const èCorretta = rispostaUtente === rispostaCorretta;
+                  const èCorretta = rispostaUtente === rispostaCorretta;                  
 
                   let bgColor = 'bg-gray-100';
                   if (mostraCorrette && haRisposto) {
@@ -242,6 +259,7 @@ function App() {
                   return (
                     <button
                       key={index}
+                      ref={(el) => (numeroRefs.current[index] = el)}
                       className={`px-3 py-1 rounded-full border ${bgColor} ${index === indiceCorrente ? 'ring-2 ring-[#6A82AB]' : ''}`}
                       onClick={() => setIndiceCorrente(index)}
                     >
@@ -253,7 +271,7 @@ function App() {
               {hasOverflow && (
                 <button
                   onClick={() => scrollBarRef.current?.scrollBy({ left: 100, behavior: "smooth" })}
-                  className="absolute right-0 z-10 bg-white/80 rounded-full p-1 shadow-md"
+                  className="absolute right-0 z-10 bg-[#B9CAE5] rounded p-1"
                 >
                   →
                 </button>
@@ -314,13 +332,19 @@ function App() {
                   disabled={indiceCorrente === 0}
                   className={`px-4 py-2 rounded transition ${indiceCorrente === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#6A82AB] hover:bg-[#81A8CC] text-white'
                     }`}
-                >Precedente</button>
+                >{Object.keys(risposteUtente).length === domande.length ? 
+                  <span>←</span> :
+                  <span>Precedente</span>
+                }</button>
                 <button
                   onClick={() => setIndiceCorrente(i => Math.min(i + 1, domande.length - 1))}
                   disabled={indiceCorrente === domande.length - 1}
                   className={`px-4 py-2 rounded transition ${indiceCorrente === domande.length - 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#6A82AB] hover:bg-[#81A8CC] text-white'
                     }`}
-                >Successiva</button>
+                >{Object.keys(risposteUtente).length === domande.length ? 
+                  <span>→</span> :
+                  <span>Successiva</span>
+                }</button>
               </div>
             </div>
             {!mostraCorrette && (
