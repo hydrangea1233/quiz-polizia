@@ -2,21 +2,28 @@ import React, { useState, useRef, useEffect } from 'react';
 import questions from './data/domande.json';
 
 function App() {
+
+  // Logica del quiz
   const [categoria, setCategoria] = useState("__tutte__");
   const [numero, setNumero] = useState(5);
   const [domande, setEstratte] = useState([]);
   const [risposteUtente, setRisposteUtente] = useState({});
-  const [mostraCorrette, setMostraCorrette] = useState(false);
   const [indiceCorrente, setIndiceCorrente] = useState(0);
-  const [time, setTime] = useState(0);
+
+  // Verifica e feedback
+  const [mostraCorrette, setMostraCorrette] = useState(false);
+  const [isTimeUp, setIsTimeUp] = useState(false);
+
+  // Timer
   const [timerRunning, setTimerRunning] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
   const [maxTime, setMaxTime] = useState(0);
-  const [isTimeUp, setIsTimeUp] = useState(false);
+
+  // Refs e overflow
   const countdownRef = useRef(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
-  const [hasOverflow, setHasOverflow] = useState(false);
   const numeroRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [hasOverflow, setHasOverflow] = useState(false);
 
   const categorie = Object.keys(questions);
 
@@ -28,24 +35,15 @@ function App() {
     setNumero(5);
     setIndiceCorrente(0);
     stopTimer();
-    setTime(0);
     resetCountdown();
   };
 
-  const handleNumeroDomande = (value) => {
-    setNumero(Number(value));
-    if (Number(value) === 0) {
-      setNumero("");
-    } else if (Number(value) > 100) {
-      alert("Ops!\nSi possono selezionare al massimo 100 domande!");
-      setNumero("");
-      return;
-    } else if (Number(value) < 1) {
-      alert("Ops!\nSi deve selezionare almeno 1 domanda!");
-      setNumero("");
-      return;
-    }
-  }
+  const handleNumeroDomande = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = Number(e.target.value);
+    if (value < 1) value = 1;
+    if (value > 100) value = 100;
+    setNumero(value);
+  };
 
   const generaQuiz = () => {
     const lettere = ["A", "B", "C", "D", "E"];
@@ -54,7 +52,6 @@ function App() {
       const shuffle = entries.sort(() => Math.random() - 0.5);
       const nuoveOpzioni: any = {};
       let nuovaCorretta = "";
-
       shuffle.forEach(([letteraOrig, testo], index) => {
         const nuovaLettera = lettere[index];
         nuoveOpzioni[nuovaLettera] = testo;
@@ -62,9 +59,7 @@ function App() {
           nuovaCorretta = nuovaLettera;
         }
       });
-
       startTimer();
-
       return {
         domanda: d.domanda,
         opzioni: nuoveOpzioni,
@@ -72,9 +67,7 @@ function App() {
         categoria: d.categoria
       };
     };
-
     let tutteDomande: any[] = [];
-
     if (categoria === "__tutte__") {
       for (const [catName, domandeCat] of Object.entries(questions)) {
         const annotate = (domandeCat as any[]).map(d => mescolaOpzioni({
@@ -93,7 +86,6 @@ function App() {
     } else {
       return;
     }
-
     const shuffle = [...tutteDomande].sort(() => Math.random() - 0.5);
     setEstratte(shuffle.slice(0, numero));
     setRisposteUtente({});
@@ -106,6 +98,12 @@ function App() {
     if (mostraCorrette) return;
     setRisposteUtente(prev => ({ ...prev, [index]: lettera }));
   };
+
+  const handleVerificaRisposte = (risposteDate: boolean) => {
+    setMostraCorrette(risposteDate);
+    stopTimer();
+    stopCountdown();
+  }
 
   useEffect(() => {
     if (timerRunning && remainingTime > 0) {
@@ -125,14 +123,10 @@ function App() {
   useEffect(() => {
     const el = scrollBarRef.current;
     if (!el) return;
-  
     const checkOverflow = () => {
       setHasOverflow(el.scrollWidth > el.clientWidth);
     };
-  
     checkOverflow();
-  
-    // opzionale: ricalcola se la finestra cambia
     window.addEventListener("resize", checkOverflow);
     return () => window.removeEventListener("resize", checkOverflow);
   }, [domande.length]);
@@ -145,11 +139,8 @@ function App() {
       block: "nearest",
     });
   }, [indiceCorrente]);
-  
-  
 
   const startTimer = () => {
-    setTime(0);
     setTimerRunning(true);
   };
 
@@ -186,12 +177,6 @@ function App() {
     return `${mins}:${secs}`;
   };
 
-  const handleVerificaRisposte = (risposteDate: boolean) => {
-    setMostraCorrette(risposteDate);
-    stopTimer();
-    stopCountdown();
-  }
-
   return (
     <div className="p-4 min-h-screen bg-[#e8eaee] text-[#333] flex justify-center">
       <div className="w-full max-w-md">
@@ -211,7 +196,7 @@ function App() {
         </div>
         <div className="mb-4">
           <label className="block mb-1 text-[#6A82AB]">Numero domande:</label>
-          <input type="number" value={numero} onChange={e => handleNumeroDomande(e.target.value)} min="1" max="100" className="w-full border p-2 rounded" />
+          <input type="number" value={numero} onChange={e => handleNumeroDomande(e)} min="1" max="100" className="w-full border p-2 rounded" />
         </div>
         {domande.length === 0 && !mostraCorrette && (
           <div className="flex justify-center">
@@ -228,7 +213,7 @@ function App() {
             <button
               onClick={resetQuiz}
               className="bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition"
-            >Ricomincia</button>
+            >Reset</button>
           </div>
         )}
         {domande.length > 0 && (
@@ -237,7 +222,7 @@ function App() {
               {hasOverflow && (
                 <button
                   onClick={() => scrollBarRef.current?.scrollBy({ left: -100, behavior: "smooth" })}
-                  className="absolute left-0 z-10 bg-[#B9CAE5] rounded p-1"
+                  className="absolute left-0 z-10 bg-[#A9C2E6] rounded p-1 text-white shadow"
                 >
                   ←
                 </button>
@@ -255,7 +240,6 @@ function App() {
                   } else if (haRisposto) {
                     bgColor = 'bg-[#81A8CC] text-white';
                   }
-
                   return (
                     <button
                       key={index}
@@ -271,7 +255,7 @@ function App() {
               {hasOverflow && (
                 <button
                   onClick={() => scrollBarRef.current?.scrollBy({ left: 100, behavior: "smooth" })}
-                  className="absolute right-0 z-10 bg-[#B9CAE5] rounded p-1"
+                  className="absolute right-0 z-10 bg-[#A9C2E6] rounded p-1 text-white shadow"
                 >
                   →
                 </button>
@@ -307,14 +291,12 @@ function App() {
                   const isSelezionata = risposteUtente[indiceCorrente] === lettera;
                   const èCorretta = domande[indiceCorrente].corretta === lettera;
                   let colore = "border-[#ddd] bg-white hover:bg-[#f8f8f8]";
-
                   if (mostraCorrette) {
                     if (èCorretta) colore = "border-green-500 bg-green-100";
                     else if (isSelezionata && !èCorretta) colore = "border-red-500 bg-red-100";
                   } else if (isSelezionata) {
                     colore = "bg-[#e2f1ff] border-[#6A82AB] text-[#6A82AB]";
                   }
-
                   return (
                     <button
                       key={lettera}
@@ -351,7 +333,7 @@ function App() {
               <div className="flex justify-center mt-6">
                 <button
                   onClick={() => handleVerificaRisposte(true)}
-                  disabled={isTimeUp || Object.keys(risposteUtente).length !== domande.length || mostraCorrette}
+                  disabled={Object.keys(risposteUtente).length !== domande.length || mostraCorrette}
                   className={`bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition ${Object.keys(risposteUtente).length === domande.length && !mostraCorrette
                     ? "bg-green-600 hover:bg-green-700"
                     : "bg-gray-400 cursor-not-allowed"
