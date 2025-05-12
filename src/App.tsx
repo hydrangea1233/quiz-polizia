@@ -180,7 +180,7 @@ function App() {
   return (
     <div className="p-4 min-h-screen bg-[#e8eaee] text-[#333] flex justify-center">
       <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold mb-6 text-[#6A82AB]">Un quiz qualsiasi</h1>
+        {/*<h1 className="text-3xl font-bold mb-6 text-[#6A82AB]">quiz polizia</h1>*/}
         <div className="mb-4">
           <label className="block mb-1 text-[#6A82AB]">Categoria:</label>
           <select

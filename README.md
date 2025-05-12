@@ -1,4 +1,4 @@
-# Quiz Qualsiasi 🧠
+# Quiz polizia 🧠
 
 Una semplice e brillante applicazione quiz offline realizzata con [React](https://reactjs.org/), [Vite](https://vitejs.dev/) e [Tailwind CSS](https://tailwindcss.com/).
 
@@ -14,7 +14,7 @@ Una semplice e brillante applicazione quiz offline realizzata con [React](https:
 
 ## 🚀 Come avviare il progetto
 
-1. Apri il terminale nella cartella `quiz-qualsiasi`
+1. Apri il terminale nella cartella `quiz-polizia`
 2. Installa le dipendenze (solo la prima volta):
 
 ```bash
