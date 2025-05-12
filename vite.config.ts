@@ -12,8 +12,11 @@ export default defineConfig({
       manifest: {
         name: 'Quiz polizia',
         short_name: 'Quiz',
+        id: '/quiz-polizia/',
+        description: 'Un quiz semplice per allenarsi con domande a risposta multipla.',
         start_url: '.',
         display: 'standalone',
+        orientation: 'portrait',
         background_color: '#fef5f8',
         theme_color: '#6A82AB',
         icons: [
