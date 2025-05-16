@@ -17,6 +17,7 @@ export default defineConfig({
         start_url: '.',
         display: 'standalone',
         orientation: 'portrait',
+        categories: ['education', 'quiz'],
         background_color: '#fef5f8',
         theme_color: '#6A82AB',
         icons: [
