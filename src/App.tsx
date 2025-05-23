@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import questions from './data/domande.json';
+import questions from './data/banca_dati_2025.json';
 
 function App() {
 
   // Logica del quiz
   const [categoria, setCategoria] = useState("__tutte__");
   const [numero, setNumero] = useState(5);
+  const [numeroInput, setNumeroInput] = useState<string>("5");
   const [domande, setEstratte] = useState([]);
   const [risposteUtente, setRisposteUtente] = useState({});
   const [indiceCorrente, setIndiceCorrente] = useState(0);
@@ -33,20 +34,48 @@ function App() {
     setMostraCorrette(false);
     setCategoria('__tutte__');
     setNumero(5);
+    setNumeroInput(5);
     setIndiceCorrente(0);
     stopTimer();
     resetCountdown();
   };
 
-  const handleNumeroDomande = (e: React.ChangeEvent<HTMLInputElement>) => {
+  /* const handleNumeroDomande = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = Number(e.target.value);
     if (value < 1) value = 1;
     if (value > 100) value = 100;
     setNumero(value);
+  }; */
+
+  const handleNumeroDomande = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+
+    // Accetta solo numeri, ma non forza subito
+    if (/^\d*$/.test(val)) {
+      setNumeroInput(val);
+    }
+  };
+
+  const handleBlur = () => {
+    const numero = Number(numeroInput);
+
+    if (!numero || numero < 1) {
+      setNumeroInput("1");
+      setNumero(1);
+      return;
+    }
+
+    if (numero > 100) {
+      setNumeroInput("100");
+      setNumero(100);
+      return;
+    }
+
+    setNumero(numero);
   };
 
   const generaQuiz = () => {
-    const lettere = ["A", "B", "C", "D", "E"];
+    const lettere = ["A", "B", "C", "D"];
     const mescolaOpzioni = (d: any) => {
       const entries = Object.entries(d.opzioni);
       const shuffle = entries.sort(() => Math.random() - 0.5);
@@ -196,7 +225,11 @@ function App() {
         </div>
         <div className="mb-4">
           <label className="block mb-1 text-[#6A82AB]">Numero domande:</label>
-          <input type="number" value={numero} onChange={e => handleNumeroDomande(e)} min="1" max="100" className="w-full border p-2 rounded" />
+          <input type="text"
+            value={numeroInput}
+            onChange={handleNumeroDomande}
+            onBlur={handleBlur}
+            min="1" max="100" className="w-full border p-2 rounded" />
         </div>
         {domande.length === 0 && !mostraCorrette && (
           <div className="flex justify-center">
@@ -232,7 +265,7 @@ function App() {
                   const rispostaUtente = risposteUtente[index];
                   const rispostaCorretta = domande[index].corretta;
                   const haRisposto = rispostaUtente !== undefined;
-                  const èCorretta = rispostaUtente === rispostaCorretta;                  
+                  const èCorretta = rispostaUtente === rispostaCorretta;
 
                   let bgColor = 'bg-gray-100';
                   if (mostraCorrette && haRisposto) {
@@ -314,19 +347,19 @@ function App() {
                   disabled={indiceCorrente === 0}
                   className={`px-4 py-2 rounded transition ${indiceCorrente === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#6A82AB] hover:bg-[#81A8CC] text-white'
                     }`}
-                >{Object.keys(risposteUtente).length === domande.length ? 
+                >{Object.keys(risposteUtente).length === domande.length ?
                   <span>←</span> :
                   <span>Precedente</span>
-                }</button>
+                  }</button>
                 <button
                   onClick={() => setIndiceCorrente(i => Math.min(i + 1, domande.length - 1))}
                   disabled={indiceCorrente === domande.length - 1}
                   className={`px-4 py-2 rounded transition ${indiceCorrente === domande.length - 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#6A82AB] hover:bg-[#81A8CC] text-white'
                     }`}
-                >{Object.keys(risposteUtente).length === domande.length ? 
+                >{Object.keys(risposteUtente).length === domande.length ?
                   <span>→</span> :
                   <span>Successiva</span>
-                }</button>
+                  }</button>
               </div>
             </div>
             {!mostraCorrette && (

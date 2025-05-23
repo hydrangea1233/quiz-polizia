@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  base: '/quiz-polizia/', // ← già corretto per GitHub Pages
+  base: './',
   plugins: [
     react(),
     VitePWA({
