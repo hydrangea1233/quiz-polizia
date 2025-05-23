@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">quiz-polizia</string>
+    <string name="title_activity_main">quiz-polizia</string>
+    <string name="package_name">com.lys.quizpolizia</string>
+    <string name="custom_url_scheme">com.lys.quizpolizia</string>
+</resources>
