@@ -1,6 +1,6 @@
-# Quiz polizia 🧠
+# Quiz polizia 
 
-Una semplice e brillante applicazione quiz offline realizzata con [React](https://reactjs.org/), [Vite](https://vitejs.dev/) e [Tailwind CSS](https://tailwindcss.com/).
+Una semplice applicazione quiz offline realizzata con [React](https://reactjs.org/), [Vite](https://vitejs.dev/) e [Tailwind CSS](https://tailwindcss.com/).
 
 ## ✨ Funzionalità principali
 
@@ -10,7 +10,6 @@ Una semplice e brillante applicazione quiz offline realizzata con [React](https:
 - Clic sulle risposte (modificabili prima della verifica)
 - Verifica finale con feedback e punteggio
 - Pulsante per ricominciare
-- Funzionamento offline pronto per essere una PWA
 
 ## 🚀 Come avviare il progetto
 
@@ -44,13 +43,4 @@ npm run dev
 - `index.html` e `vite.config.ts`: base del progetto
 - `tailwind.config.cjs`: configurazione per lo stile
 
-## ✅ Idee per il futuro
-
-- Timer per ogni domanda
-- Salvataggio punteggio in locale
-- Modalità allenamento o esame
-- Modalità dark 🌙
-
 ---
-
-Creato con cura e curiosità 💛

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import questions from './data/banca_dati_2025.json';
+import questions from './data/domande_2025.json';
 
 function App() {
 
@@ -75,7 +75,7 @@ function App() {
   };
 
   const generaQuiz = () => {
-    const lettere = ["A", "B", "C", "D"];
+    const lettere = ["A", "B", "C", "D", "E"];
     const mescolaOpzioni = (d: any) => {
       const entries = Object.entries(d.opzioni);
       const shuffle = entries.sort(() => Math.random() - 0.5);
