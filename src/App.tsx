@@ -4,6 +4,7 @@ import questions from './data/domande_2025.json';
 function App() {
 
   // Logica del quiz
+  const [usaDomandeAlternative, setUsaDomandeAlternative] = useState(false);
   const [categoria, setCategoria] = useState("__tutte__");
   const [numero, setNumero] = useState(5);
   const [numeroInput, setNumeroInput] = useState<string>("5");
@@ -74,7 +75,11 @@ function App() {
     setNumero(numero);
   };
 
-  const generaQuiz = () => {
+  const generaQuiz = async () => {
+    let questionsToUse: any = usaDomandeAlternative
+      ? (await import('./data/domande_alternative.json')).default
+      : (await import('./data/domande_2025.json')).default;
+
     const lettere = ["A", "B", "C", "D", "E"];
     const mescolaOpzioni = (d: any) => {
       const entries = Object.entries(d.opzioni);
@@ -98,15 +103,15 @@ function App() {
     };
     let tutteDomande: any[] = [];
     if (categoria === "__tutte__") {
-      for (const [catName, domandeCat] of Object.entries(questions)) {
+      for (const [catName, domandeCat] of Object.entries(questionsToUse)) {
         const annotate = (domandeCat as any[]).map(d => mescolaOpzioni({
           ...d,
           categoria: catName
         }));
         tutteDomande = tutteDomande.concat(annotate);
       }
-    } else if (categoria && questions[categoria]) {
-      tutteDomande = (questions[categoria] as any[]).map(d =>
+    } else if (categoria && questionsToUse[categoria]) {
+      tutteDomande = (questionsToUse[categoria] as any[]).map(d =>
         mescolaOpzioni({
           ...d,
           categoria
@@ -209,7 +214,7 @@ function App() {
   return (
     <div className="p-4 min-h-screen bg-[#e8eaee] text-[#333] flex justify-center">
       <div className="w-full max-w-md">
-        {/*<h1 className="text-3xl font-bold mb-6 text-[#6A82AB]">quiz polizia</h1>*/}
+        <h1 className="text-3xl font-bold mb-6 text-[#6A82AB] uppercase text-center">quiz concorso polizia</h1>
         <div className="mb-4">
           <label className="block mb-1 text-[#6A82AB]">Categoria:</label>
           <select
@@ -230,6 +235,18 @@ function App() {
             onChange={handleNumeroDomande}
             onBlur={handleBlur}
             min="1" max="100" className="w-full border p-2 rounded" />
+        </div>
+        <div className="mb-4 flex items-center gap-2">
+          <input
+            id="toggle-json"
+            type="checkbox"
+            checked={usaDomandeAlternative}
+            onChange={(e) => setUsaDomandeAlternative(e.target.checked)}
+            className="w-5 h-5 accent-[#6A82AB]"
+          />
+          <label htmlFor="toggle-json" className="text-[#6A82AB]">
+            Usa soltanto le domande aggiunte nel 2025
+          </label>
         </div>
         {domande.length === 0 && !mostraCorrette && (
           <div className="flex justify-center">
