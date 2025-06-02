@@ -39,14 +39,8 @@ function App() {
     setIndiceCorrente(0);
     stopTimer();
     resetCountdown();
+    setUsaDomandeAlternative(false);
   };
-
-  /* const handleNumeroDomande = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = Number(e.target.value);
-    if (value < 1) value = 1;
-    if (value > 100) value = 100;
-    setNumero(value);
-  }; */
 
   const handleNumeroDomande = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
