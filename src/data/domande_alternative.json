@@ -467,7 +467,9 @@
         "E": "Sofia"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Italiano - Grammatica": [
     {
       "numero": 668,
       "domanda": "Una delle opzioni di risposta riporta la parola più vicina, come significato, al termine \"umoristico\": quale?",
@@ -611,9 +613,7 @@
         "E": "Loro"
       },
       "corretta": "A"
-    }
-  ],
-  "Italiano - Grammatica": [
+    },
     {
       "numero": 763,
       "domanda": "Secondo le regole della grammatica italiana, una delle seguenti frasi contiene un complemento di specificazione: quale?",
@@ -841,7 +841,9 @@
         "E": "proposizione subordinata di primo grado, temporale, esplicita"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Italiano - Letteratura": [
     {
       "numero": 1004,
       "domanda": "Chi è l' autore de \"Dei delitti e delle pene\", celebre componimento settecentesco?",
@@ -1165,9 +1167,7 @@
         "E": "Elsa Morante"
       },
       "corretta": "A"
-    }
-  ],
-  "Italiano - Letteratura": [
+    },
     {
       "numero": 1239,
       "domanda": "La corrente letteraria italiana, della quale Filippo Tommaso Marinetti scrisse il manifesto, è:",
@@ -1227,7 +1227,9 @@
         "E": "Don Rodrigo"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Storia": [
     {
       "numero": 1374,
       "domanda": "Qual è l'avvenimento storico che caratterizzò l'anno 1922?",
@@ -2093,7 +2095,7 @@
       "corretta": "A"
     }
   ],
-  "Storia": [
+  "Matematica": [
     {
       "numero": 2005,
       "domanda": "Qual è il risultato della sottrazione (32/7)- (8/7)?",
@@ -3101,9 +3103,7 @@
         "E": "3, 21, 30, 36"
       },
       "corretta": "A"
-    }
-  ],
-  "Matematica": [
+    },
     {
       "numero": 2480,
       "domanda": "Eseguendo la seguente addizione algebrica -2b - 3b - 4b si ottiene:",
@@ -3619,7 +3619,9 @@
         "E": "9"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Cittadinanza e Costituzione": [
     {
       "numero": 2673,
       "domanda": "cosa si celebra il 25 aprile?",
@@ -4039,9 +4041,7 @@
         "E": "la violazione delle norme previste dal codice di procedura civile"
       },
       "corretta": "A"
-    }
-  ],
-  "Cittadinanza e Costituzione": [
+    },
     {
       "numero": 3057,
       "domanda": "chi può esercitare il diritto di riunione?",
@@ -4197,7 +4197,9 @@
         "E": "una azione collettiva finalizzata ad ottenere un provvedimento urgente del Presidente della Repubblica"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Inglese": [
     {
       "numero": 3337,
       "domanda": "(Completare la frase che segue, inserendo l'alternativa di risposta che la rende corretta in lingua inglese) He's not working, ______",
@@ -4929,9 +4931,7 @@
         "E": "with"
       },
       "corretta": "A"
-    }
-  ],
-  "Inglese": [
+    },
     {
       "numero": 3840,
       "domanda": "(La frase che segue si completa solo con una delle alternative di risposta proposte: individuare quella corretta) I _________ television a lot, but I don’t do it anymore",
@@ -5195,7 +5195,9 @@
         "E": "love"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Informatica": [
     {
       "numero": 4003,
       "domanda": "Nel caso si vuole uscire da un documento di Word, senza dover salvare eventuali modifiche fatte, cosa è necessario fare?",
@@ -5483,9 +5485,7 @@
         "E": "Un'applicazione"
       },
       "corretta": "A"
-    }
-  ],
-  "Informatica": [
+    },
     {
       "numero": 4190,
       "domanda": "In una rete \"peer to peer\" tutte le postazioni ___________",
@@ -6349,9 +6349,7 @@
         "E": "Campi che non possono essere modificati"
       },
       "corretta": "A"
-    }
-  ],
-  "Ragionamento logico - matematico": [
+    },
     {
       "numero": 4564,
       "domanda": "In Microsoft Access, cosa sono le \"relazioni\" tra le tabelle?",
@@ -6663,7 +6661,9 @@
         "E": "Multilevel Queue Scheduling."
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Ragionamento logico - matematico": [
     {
       "numero": 4670,
       "domanda": "Individuare il numero che completa logicamente la serie numerica: 40; 34; 29; ?; 22",
@@ -6819,9 +6819,7 @@
         "E": "1955"
       },
       "corretta": "A"
-    }
-  ],
-  "Ragionamento critico - verbale": [
+    },
     {
       "numero": 4875,
       "domanda": "Individuare il numero che completa logicamente la serie numerica: 3 18 12 72 ?",
@@ -7001,7 +6999,9 @@
         "E": "135"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Ragionamento critico - verbale": [
     {
       "numero": 5335,
       "domanda": "Quale delle seguenti è una deduzione logica da \"Tutti i gatti miagolano\"?",

@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'robots.txt'],
+      includeAssets: ['favicon.ico', 'robots.txt'],
       manifest: {
         name: 'Quiz polizia',
         short_name: 'Quiz',
@@ -18,15 +18,9 @@ export default defineConfig({
         theme_color: '#6A82AB',
         icons: [
           {
-            src: 'icon-192.png',
-            sizes: '192x192',
+            src: 'assets/icon.png',
             type: 'image/png',
-          },
-          {
-            src: 'icon-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
+          }
         ],
       },
     }),

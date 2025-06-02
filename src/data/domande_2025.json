@@ -8003,7 +8003,9 @@
         "E": "il Belgio"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Italiano - Grammatica": [
     {
       "numero": 668,
       "domanda": "Una delle opzioni di risposta riporta la parola più vicina, come significato, al termine \"umoristico\": quale?",
@@ -9119,9 +9121,7 @@
         "E": "Loro"
       },
       "corretta": "A"
-    }
-  ],
-  "Italiano - Grammatica": [
+    },
     {
       "numero": 761,
       "domanda": "Quale opzione di risposta riporta un sinonimo comune alle seguenti parole: \"bozza\" e \"piccola\".",
@@ -12025,7 +12025,9 @@
         "E": "proposizione oordinata sostitutiva di terzo grado"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Italiano - Letteratura": [
     {
       "numero": 1003,
       "domanda": "L'incipit \"Un dì, s'io non andrò sempre fuggendo di gente in gente, me vedrai seduto su la tua pietra\" appartiene a un famoso sonetto che fu composta da:",
@@ -14581,9 +14583,7 @@
         "E": "Del racconto di Italo Calvino \"Il sentiero dei nidi di ragno\""
       },
       "corretta": "A"
-    }
-  ],
-  "Italiano - Letteratura": [
+    },
     {
       "numero": 1216,
       "domanda": "In \"Il fu Mattia Pascal\", il protagonista elabora una teoria secondo cui, l'essere umano ha la sfortuna di avere coscienza della propria vita, con la conseguenza di subordinare la realtà esterna oggettiva a tale percezione interna della vita, che prende il nome di:",
@@ -16047,7 +16047,9 @@
         "E": "Eros"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Storia": [
     {
       "numero": 1338,
       "domanda": "In Cile il generale Augusto Pinochet Ugarte terminò il suo mandato nel…",
@@ -23595,9 +23597,7 @@
         "E": "Elena Cattaneo"
       },
       "corretta": "A"
-    }
-  ],
-  "Storia": [
+    },
     {
       "numero": 1967,
       "domanda": "Con quale nome è passata alla storia la linea politica completamente nuova inaugurata dall'imperatore Guglielmo II, succeduto nel 1888 al nonno Guglielmo I, che nel 1890 obbligò Bismarck a dimettersi dopo quasi trent'anni di cancellierato?",
@@ -24053,7 +24053,9 @@
         "E": "Avviò un programma di riforme sociali che migliorassero le condizioni dei lavoratori"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Matematica": [
     {
       "numero": 2005,
       "domanda": "Qual è il risultato della sottrazione (32/7)- (8/7)?",
@@ -28097,9 +28099,7 @@
         "E": "3^5"
       },
       "corretta": "A"
-    }
-  ],
-  "Matematica": [
+    },
     {
       "numero": 2342,
       "domanda": "L' espressione letterale 50+10b-30a se a=2 e b=2 vale:",
@@ -32047,7 +32047,9 @@
         "E": "18 cm"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Cittadinanza e Costituzione": [
     {
       "numero": 2671,
       "domanda": "I minori hanno alcuni doveri nei confronti dei genitori, quali?",
@@ -36523,9 +36525,7 @@
         "E": "52"
       },
       "corretta": "A"
-    }
-  ],
-  "Cittadinanza e Costituzione": [
+    },
     {
       "numero": 3044,
       "domanda": "\"Ai fini della elevazione economica e sociale del lavoro in armonia con le esigenze della produzione, la Repubblica riconosce il diritto dei lavoratori a collaborare, nei modi e nei limiti stabiliti dalle leggi, alla gestione delle aziende.\" è quanto recita l'art. ...",
@@ -40041,7 +40041,9 @@
         "E": "una azione collettiva finalizzata ad ottenere un provvedimento urgente del Presidente della Repubblica"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Inglese": [
     {
       "numero": 3337,
       "domanda": "(Completare la frase che segue, inserendo l'alternativa di risposta che la rende corretta in lingua inglese) He's not working, ______",
@@ -45609,9 +45611,7 @@
         "E": "never"
       },
       "corretta": "A"
-    }
-  ],
-  "Inglese": [
+    },
     {
       "numero": 3801,
       "domanda": "(La frase che segue si completa solo con una delle alternative di risposta proposte: individuare quella corretta) Look! That man _________ the same sweater as you",
@@ -48035,7 +48035,9 @@
         "E": "do"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Informatica": [
     {
       "numero": 4003,
       "domanda": "Nel caso si vuole uscire da un documento di Word, senza dover salvare eventuali modifiche fatte, cosa è necessario fare?",
@@ -50171,9 +50173,7 @@
         "E": "Una tastiera combinatoria"
       },
       "corretta": "A"
-    }
-  ],
-  "Informatica": [
+    },
     {
       "numero": 4181,
       "domanda": "L'estensione di una presentazione \"eseguibile\", che quindi parte facendo doppio click sul file, in Power Point, presenta l'estensione:",
@@ -54757,9 +54757,7 @@
         "E": "Un servizio che consente di associare data e ora certe ad un documento informatico"
       },
       "corretta": "A"
-    }
-  ],
-  "Ragionamento logico - matematico": [
+    },
     {
       "numero": 4563,
       "domanda": "Per definire una interrogazione generica in un database,quale nome tecnico viene usato?",
@@ -56031,7 +56029,9 @@
         "E": "una forma di passaggio di informazioni di carattere matematico"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Ragionamento logico - matematico": [
     {
       "numero": 4669,
       "domanda": "Indicare quale sequenza di lettere completa logicamente la serie: BRT - 126 ; ? - 661 ; RBT - 216",
@@ -58419,9 +58419,7 @@
         "E": "8785"
       },
       "corretta": "A"
-    }
-  ],
-  "Ragionamento critico - verbale": [
+    },
     {
       "numero": 4868,
       "domanda": "Quale dei seguenti numeri è il doppio della somma dei due numeri 5 e 10:",
@@ -64025,7 +64023,9 @@
         "E": "46"
       },
       "corretta": "A"
-    },
+    }
+  ],
+  "Ragionamento critico - verbale": [
     {
       "numero": 5335,
       "domanda": "Quale delle seguenti è una deduzione logica da \"Tutti i gatti miagolano\"?",
