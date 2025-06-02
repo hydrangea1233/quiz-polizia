@@ -28,6 +28,7 @@ function App() {
   const [hasOverflow, setHasOverflow] = useState(false);
 
   const categorie = Object.keys(questions);
+  console.log(questions);
 
   const resetQuiz = () => {
     setEstratte([]);
@@ -206,11 +207,11 @@ function App() {
   };
 
   return (
-    <div className="p-4 min-h-screen bg-[#e8eaee] text-[#333] flex justify-center">
+    <div className="p-4 min-h-screen bg-bgcolor text-[#333] flex justify-center">
       <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold mb-6 text-[#6A82AB] uppercase text-center">quiz concorso polizia</h1>
+        <h1 className="text-3xl font-bold mb-6 text-maincolor uppercase text-center">quiz concorso polizia</h1>
         <div className="mb-4">
-          <label className="block mb-1 text-[#6A82AB]">Categoria:</label>
+          <label className="block mb-1 text-maincolor">Categoria:</label>
           <select
             value={categoria}
             onChange={e => setCategoria(e.target.value)}
@@ -223,7 +224,7 @@ function App() {
           </select>
         </div>
         <div className="mb-4">
-          <label className="block mb-1 text-[#6A82AB]">Numero domande:</label>
+          <label className="block mb-1 text-maincolor">Numero domande:</label>
           <input type="text"
             value={numeroInput}
             onChange={handleNumeroDomande}
@@ -236,9 +237,9 @@ function App() {
             type="checkbox"
             checked={usaDomandeAlternative}
             onChange={(e) => setUsaDomandeAlternative(e.target.checked)}
-            className="w-5 h-5 accent-[#6A82AB]"
+            className="w-5 h-5 accent-maincolor"
           />
-          <label htmlFor="toggle-json" className="text-[#6A82AB]">
+          <label htmlFor="toggle-json" className="text-maincolor">
             Usa soltanto le domande aggiunte nel 2025
           </label>
         </div>
@@ -246,7 +247,7 @@ function App() {
           <div className="flex justify-center">
             <button
               onClick={generaQuiz}
-              className="bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition"
+              className="bg-maincolor hover:bg-maincolorhover text-white px-4 py-2 rounded-full shadow transition"
             >
               Genera
             </button>
@@ -256,7 +257,7 @@ function App() {
           <div className="mt-4 text-center">
             <button
               onClick={resetQuiz}
-              className="bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition"
+              className="bg-maincolor hover:bg-maincolorhover text-white px-4 py-2 rounded-full shadow transition"
             >Reset</button>
           </div>
         )}
@@ -266,7 +267,7 @@ function App() {
               {hasOverflow && (
                 <button
                   onClick={() => scrollBarRef.current?.scrollBy({ left: -100, behavior: "smooth" })}
-                  className="absolute left-0 z-10 bg-[#A9C2E6] rounded p-1 text-white shadow"
+                  className="absolute left-0 z-10 bg-white rounded p-1 text-maincolor shadow"
                 >
                   ←
                 </button>
@@ -282,13 +283,13 @@ function App() {
                   if (mostraCorrette && haRisposto) {
                     bgColor = èCorretta ? 'bg-green-500 text-white' : 'bg-red-500 text-white';
                   } else if (haRisposto) {
-                    bgColor = 'bg-[#81A8CC] text-white';
+                    bgColor = 'bg-maincolor text-white';
                   }
                   return (
                     <button
                       key={index}
                       ref={(el) => (numeroRefs.current[index] = el)}
-                      className={`px-3 py-1 rounded-full border ${bgColor} ${index === indiceCorrente ? 'ring-2 ring-[#6A82AB]' : ''}`}
+                      className={`px-3 py-1 rounded-full border ${bgColor} ${index === indiceCorrente ? 'ring-2 ring-maincolor' : ''}`}
                       onClick={() => setIndiceCorrente(index)}
                     >
                       {index + 1}
@@ -299,14 +300,14 @@ function App() {
               {hasOverflow && (
                 <button
                   onClick={() => scrollBarRef.current?.scrollBy({ left: 100, behavior: "smooth" })}
-                  className="absolute right-0 z-10 bg-[#A9C2E6] rounded p-1 text-white shadow"
+                  className="absolute right-0 z-10 bg-white rounded p-1 text-maincolor shadow"
                 >
                   →
                 </button>
               )}
             </div>
             {mostraCorrette && (
-              <div className="mt-4 text-lg font-semibold text-[#6A82AB] text-center">
+              <div className="mt-4 text-lg font-semibold text-maincolor text-center">
                 Risposte corrette:{" "}
                 {
                   domande.filter((q: any, i: number) => risposteUtente[i] === q.corretta).length
@@ -314,7 +315,7 @@ function App() {
                 su {domande.length}
               </div>
             )}
-            <div key={indiceCorrente} className="bg-white border border-[#6fa2f7] p-4 rounded-xl shadow-sm">
+            <div key={indiceCorrente} className="bg-white border border-cardborder p-4 rounded-xl shadow-sm">
               <p
                 className={`text-center text-lg font-semibold transition-colors ${remainingTime > maxTime * 0.5
                   ? 'text-green-600'
@@ -339,7 +340,7 @@ function App() {
                     if (èCorretta) colore = "border-green-500 bg-green-100";
                     else if (isSelezionata && !èCorretta) colore = "border-red-500 bg-red-100";
                   } else if (isSelezionata) {
-                    colore = "bg-[#e2f1ff] border-[#6A82AB] text-[#6A82AB]";
+                    colore = "bg-optionbg border-maincolor text-maincolor";
                   }
                   return (
                     <button
@@ -356,7 +357,7 @@ function App() {
                 <button
                   onClick={() => setIndiceCorrente(i => Math.max(i - 1, 0))}
                   disabled={indiceCorrente === 0}
-                  className={`px-4 py-2 rounded transition ${indiceCorrente === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#6A82AB] hover:bg-[#81A8CC] text-white'
+                  className={`px-4 py-2 rounded transition ${indiceCorrente === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-maincolor hover:bg-maincolorhover text-white'
                     }`}
                 >{Object.keys(risposteUtente).length === domande.length ?
                   <span>←</span> :
@@ -365,7 +366,7 @@ function App() {
                 <button
                   onClick={() => setIndiceCorrente(i => Math.min(i + 1, domande.length - 1))}
                   disabled={indiceCorrente === domande.length - 1}
-                  className={`px-4 py-2 rounded transition ${indiceCorrente === domande.length - 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#6A82AB] hover:bg-[#81A8CC] text-white'
+                  className={`px-4 py-2 rounded transition ${indiceCorrente === domande.length - 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-maincolor hover:bg-maincolorhover text-white'
                     }`}
                 >{Object.keys(risposteUtente).length === domande.length ?
                   <span>→</span> :
@@ -378,7 +379,7 @@ function App() {
                 <button
                   onClick={() => handleVerificaRisposte(true)}
                   disabled={Object.keys(risposteUtente).length !== domande.length || mostraCorrette}
-                  className={`bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition ${Object.keys(risposteUtente).length === domande.length && !mostraCorrette
+                  className={`bg-maincolor hover:bg-maincolorhover text-white px-4 py-2 rounded-full shadow transition ${Object.keys(risposteUtente).length === domande.length && !mostraCorrette
                     ? "bg-green-600 hover:bg-green-700"
                     : "bg-gray-400 cursor-not-allowed"
                     }`}
@@ -393,7 +394,7 @@ function App() {
           <div className="mt-4 text-center">
             <button
               onClick={resetQuiz}
-              className="bg-[#6A82AB] hover:bg-[#81A8CC] text-white px-4 py-2 rounded-full shadow transition"
+              className="bg-maincolor hover:bg-maincolorhover text-white px-4 py-2 rounded-full shadow transition"
             >Ricomincia</button>
           </div>
         )}
