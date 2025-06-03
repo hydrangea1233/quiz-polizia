@@ -279,7 +279,7 @@ function App() {
                   const haRisposto = rispostaUtente !== undefined;
                   const èCorretta = rispostaUtente === rispostaCorretta;
 
-                  let bgColor = 'bg-gray-100';
+                  let bgColor = 'bg-white';
                   if (mostraCorrette && haRisposto) {
                     bgColor = èCorretta ? 'bg-green-500 text-white' : 'bg-red-500 text-white';
                   } else if (haRisposto) {
