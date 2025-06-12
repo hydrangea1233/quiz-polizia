@@ -15,6 +15,7 @@ function App() {
   // Verifica e feedback
   const [mostraCorrette, setMostraCorrette] = useState(false);
   const [isTimeUp, setIsTimeUp] = useState(false);
+  const [quizSettings, setQuizSettings] = useState(true);
 
   // Timer
   const [timerRunning, setTimerRunning] = useState(false);
@@ -28,7 +29,6 @@ function App() {
   const [hasOverflow, setHasOverflow] = useState(false);
 
   const categorie = Object.keys(questions);
-  console.log(questions);
 
   const resetQuiz = () => {
     setEstratte([]);
@@ -41,6 +41,7 @@ function App() {
     stopTimer();
     resetCountdown();
     setUsaDomandeAlternative(false);
+    setQuizSettings(true);
   };
 
   const handleNumeroDomande = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,6 +122,7 @@ function App() {
     setMostraCorrette(false);
     setIndiceCorrente(0);
     startCountdown(shuffle.slice(0, numero).length);
+    setQuizSettings(false);
   };
 
   const selezionaRisposta = (index: number, lettera: string) => {
@@ -210,39 +212,44 @@ function App() {
     <div className="p-4 min-h-screen bg-bgcolor text-[#333] flex justify-center">
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold mb-6 text-maincolor uppercase text-center">quiz concorso polizia</h1>
-        <div className="mb-4">
-          <label className="block mb-1 text-maincolor">Categoria:</label>
-          <select
-            value={categoria}
-            onChange={e => setCategoria(e.target.value)}
-            className="w-full border p-2 rounded"
-          >
-            <option value="__tutte__">Tutte le categorie</option>
-            {categorie.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-4">
-          <label className="block mb-1 text-maincolor">Numero domande:</label>
-          <input type="text"
-            value={numeroInput}
-            onChange={handleNumeroDomande}
-            onBlur={handleBlur}
-            min="1" max="100" className="w-full border p-2 rounded" />
-        </div>
-        <div className="mb-4 flex items-center gap-2">
-          <input
-            id="toggle-json"
-            type="checkbox"
-            checked={usaDomandeAlternative}
-            onChange={(e) => setUsaDomandeAlternative(e.target.checked)}
-            className="w-5 h-5 accent-maincolor"
-          />
-          <label htmlFor="toggle-json" className="text-maincolor">
-            Usa soltanto le domande aggiunte nel 2025
-          </label>
-        </div>
+        {
+          quizSettings &&
+          <div>
+            <div className="mb-4">
+              <label className="block mb-1 text-maincolor">Categoria:</label>
+              <select
+                value={categoria}
+                onChange={e => setCategoria(e.target.value)}
+                className="w-full border p-2 rounded"
+              >
+                <option value="__tutte__">Tutte le categorie</option>
+                {categorie.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+            <div className="mb-4">
+              <label className="block mb-1 text-maincolor">Numero domande:</label>
+              <input type="text"
+                value={numeroInput}
+                onChange={handleNumeroDomande}
+                onBlur={handleBlur}
+                min="1" max="100" className="w-full border p-2 rounded" />
+            </div>
+            <div className="mb-4 flex items-center gap-2">
+              <input
+                id="toggle-json"
+                type="checkbox"
+                checked={usaDomandeAlternative}
+                onChange={(e) => setUsaDomandeAlternative(e.target.checked)}
+                className="w-5 h-5 accent-maincolor"
+              />
+              <label htmlFor="toggle-json" className="text-maincolor">
+                Usa soltanto le domande aggiunte nel 2025
+              </label>
+            </div>
+          </div>
+        }
         {domande.length === 0 && !mostraCorrette && (
           <div className="flex justify-center">
             <button
@@ -340,7 +347,7 @@ function App() {
                     if (èCorretta) colore = "border-green-500 bg-green-100";
                     else if (isSelezionata && !èCorretta) colore = "border-red-500 bg-red-100";
                   } else if (isSelezionata) {
-                    colore = "bg-optionbg border-maincolor text-maincolor";
+                    colore = "bg-optionbg border-cardborder";
                   }
                   return (
                     <button

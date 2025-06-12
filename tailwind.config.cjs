@@ -11,8 +11,17 @@ module.exports = { content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'], them
             maincolor: "#AD2F2D",
             maincolorhover: "#611A19",
             bgcolor: "#DDC5CC",
-            cardborder: "#C93734",
-            optionbg: "#E6B3B3"
-        }
+            /* cardborder: "#C93734",
+            optionbg: "#E6B3B3" */
+            cardborder: "#BDB3B1",
+            optionbg: "#B2D9EA"
+        } /*
+        colors: {
+            maincolor: "#6F57E6",
+            maincolorhover: "#7468B3",
+            bgcolor: "#C5C6E6",
+            cardborder: "#413F75",
+            optionbg: "#C8C7FC"
+        } */
     }
 }, plugins: [] }
